@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>h264 web client demo</title>
+  </head>
+  <body>
+  <!-- provide WSAvcPlayer -->
+    <script type="text/javascript" src="http-live-player.js">;</script>
+    <script type="text/javascript">
+
+var canvas = document.createElement("canvas");
+document.body.appendChild(canvas);
+
+// Create h264 player
+var uri = "ws://" + document.location.host;
+var wsavc = new WSAvcPlayer(canvas, "webgl", 1, 35);
+wsavc.connect(uri);
+setTimeout(function(){
+  wsavc.playStream();
+}, 1000);
+
+//expose instance for button callbacks
+window.wsavc = wsavc;
+
+    </script>
+    <br/>
+    <iframe src="https://www.estopwatch.net/" frameborder="no" width="600" height="200" style="transform: scale(2);position:absolute;bottom:0;left:150px;"></iframe>
+  </body>
+</html>
